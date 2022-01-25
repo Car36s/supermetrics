@@ -8,6 +8,6 @@ export const fetchJson = async (url: string, init = { method: 'GET' }) => {
 
     return data
   } catch (err) {
-    console.log(err)
+    // do something
   }
 }

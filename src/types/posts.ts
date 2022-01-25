@@ -44,3 +44,11 @@ export type GetPostsSuccess = {
 }
 
 export type postsActions = GetPostsStarted | GetPostsFailed | GetPostsSuccess
+
+export type PostCounts = Record<
+  string,
+  {
+    name: string
+    postsCount: number
+  }
+>
