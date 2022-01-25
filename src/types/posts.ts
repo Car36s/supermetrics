@@ -44,3 +44,8 @@ export type GetPostsSuccess = {
 }
 
 export type postsActions = GetPostsStarted | GetPostsFailed | GetPostsSuccess
+
+type asc = 'asc'
+type desc = 'desc'
+
+export type SortOption = asc | desc
