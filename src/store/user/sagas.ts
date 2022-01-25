@@ -1,5 +1,5 @@
 import { SagaIterator } from 'redux-saga'
-import { call, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects'
 import { register } from '../../services/register'
 import { RegisterUserStarted } from '../../types/user'
 import { registerFailed, registerSucess, userActionTypes } from './actions'
@@ -7,7 +7,8 @@ import { registerFailed, registerSucess, userActionTypes } from './actions'
 const registerSaga = function* (action: RegisterUserStarted): SagaIterator {
   try {
     const { data } = yield call(register, action.payload)
-    if (data) return registerSucess(data)
+    //@todo - localStorage ?
+    if (data) yield put(registerSucess(data))
   } catch (err: unknown) {
     registerFailed({ error: 'Borken' })
   }

@@ -13,7 +13,7 @@ const initialState: UserState = {
 const userReducers = (state = initialState, action: userActions) => {
   switch (action.type) {
     case userActionTypes.userRegisterStarted:
-      return { ...state, isLoading: true }
+      return { ...state, isLoading: true, ...action.payload }
     case userActionTypes.userRegisterFailed:
       return { ...state, isLoading: false, error: action.payload.error }
     case userActionTypes.userRegisterSuccess:
