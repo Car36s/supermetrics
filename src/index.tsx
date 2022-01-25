@@ -1,14 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store'
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyles = createGlobalStyle({
+  body: {
+    margin: 0,
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
+  },
+  code: {
+    fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace'
+  }
+})
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <GlobalStyles />
       <App />
     </Provider>
   </React.StrictMode>,

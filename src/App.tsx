@@ -1,11 +1,23 @@
-import './App.css'
+import styled from 'styled-components'
 import Register from './components/Register'
 
-const App = () => (
-  <div className="App">
+const AppComponent = ({ className }: { className?: string }) => (
+  <div className={className}>
     <Register />
-    <header className="App-header">Supermetrics</header>
+    <header>Supermetrics</header>
   </div>
 )
 
-export default App
+export default styled(AppComponent)({
+  textAlign: 'center',
+  header: {
+    backgroundColor: '#282c34',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 'calc(10px + 2vmin)',
+    color: 'white'
+  }
+})
