@@ -13,9 +13,10 @@ interface CountedSenders {
 interface Props {
   onSelectSender: (arg0: string) => void
   className?: string
+  sendersFilter: string
 }
 
-const SendersComponent = ({ onSelectSender, className }: Props) => {
+const SendersComponent = ({ onSelectSender, className, sendersFilter }: Props) => {
   const [senders, setSenders] = useState<
     {
       from_id: string
@@ -40,9 +41,10 @@ const SendersComponent = ({ onSelectSender, className }: Props) => {
       }))
       // Currently all names with capital letters.
       .sort((a, b) => (a.name > b.name ? 1 : -1))
+      .filter(({ name }) => name.toLowerCase().includes(sendersFilter.toLowerCase()))
 
     setSenders(sortedSenders)
-  }, [posts])
+  }, [posts, sendersFilter])
 
   if (!senders?.length) return null
 

@@ -12,6 +12,10 @@ import Senders from './main/Senders'
 const MainComponent = ({ className }: { className?: string }): JSX.Element | null => {
   const [selectedSender, setSelectedSender] = useState<string>()
   const [sort, setSort] = useState<SortOption>('desc')
+
+  const [sendersFilter, setSendersFilter] = useState<string>('')
+  const [postsFilter, setPostsFilter] = useState<string>('')
+
   const { sl_token } = useSelector(userSelector)
 
   const onSelectSender = useCallback(
@@ -27,9 +31,9 @@ const MainComponent = ({ className }: { className?: string }): JSX.Element | nul
 
   return (
     <main className={className}>
-      <Controls setSort={setSort} />
-      <Senders onSelectSender={onSelectSender} />
-      <Posts selectedSender={selectedSender} sort={sort} />
+      <Controls setSort={setSort} setSendersFilter={setSendersFilter} setPostsFilter={setPostsFilter} />
+      <Senders onSelectSender={onSelectSender} sendersFilter={sendersFilter} />
+      <Posts selectedSender={selectedSender} sort={sort} postsFilter={postsFilter} />
     </main>
   )
 }

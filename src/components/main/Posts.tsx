@@ -10,6 +10,7 @@ interface Props {
   selectedSender?: string
   sort: SortOption
   className?: string
+  postsFilter: string
 }
 
 const sorter: Record<SortOption, number[]> = {
@@ -17,7 +18,7 @@ const sorter: Record<SortOption, number[]> = {
   desc: [-1, 1],
 }
 
-const PostsComponent = ({ selectedSender = '', sort, className }: Props) => {
+const PostsComponent = ({ selectedSender = '', sort, className, postsFilter }: Props) => {
   const { posts } = useSelector(postsSelector)
 
   // @todo - pagination
@@ -25,12 +26,12 @@ const PostsComponent = ({ selectedSender = '', sort, className }: Props) => {
 
   useEffect(() => {
     const filteredItems = !selectedSender ? posts[1] : posts[1]?.filter(({ from_id }) => from_id === selectedSender)
-    const sortedDisplayItems = filteredItems?.sort((a, b) =>
-      a.created_time > b.created_time ? sorter[sort][0] : sorter[sort][1]
-    )
+    const sortedDisplayItems = filteredItems
+      ?.sort((a, b) => (a.created_time > b.created_time ? sorter[sort][0] : sorter[sort][1]))
+      .filter(({ message }) => message.toLowerCase().includes(postsFilter.toLowerCase()))
     // create copy of items since sort just mutates original and updates may not happen
     setDisplayItems(sortedDisplayItems?.slice(0))
-  }, [posts, selectedSender, sort])
+  }, [posts, selectedSender, sort, postsFilter])
 
   if (!displayItems?.length) return null
 
