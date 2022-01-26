@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { medium } from '../lib/sizes'
 import { userSelector } from '../store/user/selectors'
 import { SortOption } from '../types/posts'
 
@@ -34,8 +35,9 @@ const MainComponent = ({ className }: { className?: string }): JSX.Element | nul
 }
 
 export default styled(MainComponent)({
+  padding: medium,
   display: 'grid',
-  gridGap: '1rem',
+  gridGap: medium,
   gridTemplateColumns: '1fr 5fr',
   gridTemplateRows: '50px',
   gridTemplateAreas: `
