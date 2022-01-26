@@ -6,8 +6,12 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { createGlobalStyle } from 'styled-components'
 import { grayishBlue } from './lib/colors'
+import { small } from './lib/sizes'
 
 const GlobalStyles = createGlobalStyle({
+  html: {
+    width: `calc(100vw - ${small})`, // Prevent page width change when scrollbar comes and goes
+  },
   body: {
     backgroundColor: grayishBlue,
     margin: 0,
