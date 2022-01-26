@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { medium } from '../../lib/sizes'
 import { postsSelector } from '../../store/posts/selectors'
 import { Post as PostType, SortOption } from '../../types/posts'
 import Post from './posts/Post'
@@ -44,4 +45,6 @@ const PostsComponent = ({ selectedSender = '', sort, className }: Props) => {
 
 export default styled(PostsComponent)({
   gridArea: 'posts',
+  display: 'grid',
+  gridGap: medium,
 })
