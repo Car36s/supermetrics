@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { userSelector } from '../store/user/selectors'
 import { SortOption } from '../types/posts'
 
@@ -7,7 +8,7 @@ import Controls from './main/Controls'
 import Posts from './main/Posts'
 import Senders from './main/Senders'
 
-const Main = (): JSX.Element | null => {
+const MainComponent = ({ className }: { className?: string }): JSX.Element | null => {
   const [selectedSender, setSelectedSender] = useState<string>()
   const [sort, setSort] = useState<SortOption>('desc')
   const { sl_token } = useSelector(userSelector)
@@ -24,7 +25,7 @@ const Main = (): JSX.Element | null => {
   if (!sl_token) return null
 
   return (
-    <main>
+    <main className={className}>
       <Controls setSort={setSort} />
       <Senders onSelectSender={onSelectSender} />
       <Posts selectedSender={selectedSender} sort={sort} />
@@ -32,4 +33,13 @@ const Main = (): JSX.Element | null => {
   )
 }
 
-export default Main
+export default styled(MainComponent)({
+  display: 'grid',
+  gridGap: '1rem',
+  gridTemplateColumns: '1fr 5fr',
+  gridTemplateRows: '50px',
+  gridTemplateAreas: `
+  "controls controls"
+  "senders posts"
+  "senders posts"`,
+})

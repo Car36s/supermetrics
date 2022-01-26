@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import Button from '../../Button'
 
 interface Props {
   name: string
@@ -10,9 +11,9 @@ interface Props {
 const Sender = ({ name, id, postsCount, onSelectSender }: Props) => {
   const onClick = useCallback(() => onSelectSender(id), [id, onSelectSender])
   return (
-    <button onClick={onClick}>
+    <Button onClick={onClick}>
       {name}: {postsCount}
-    </button>
+    </Button>
   )
 }
 

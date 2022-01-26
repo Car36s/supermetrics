@@ -5,16 +5,18 @@ import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
 import store from './store'
 import { createGlobalStyle } from 'styled-components'
+import { grayishBlue } from './lib/colors'
 
 const GlobalStyles = createGlobalStyle({
   body: {
+    backgroundColor: grayishBlue,
     margin: 0,
     fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif'
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
   },
   code: {
-    fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace'
-  }
+    fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace',
+  },
 })
 
 ReactDOM.render(

@@ -1,11 +1,13 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { darkGrayishBlue, grayishBlue } from '../lib/colors'
-import { extraSmall, medium, small } from '../lib/sizes'
+import { darkGrayishBlue } from '../lib/colors'
+import { xxsmall, small, xsmall } from '../lib/sizes'
 
 import { registerStarted } from '../store/user/actions'
 import { userSelector } from '../store/user/selectors'
+import Button from './Button'
+import Input from './Input'
 
 const Register = ({ className }: { className?: string }) => {
   const { isLoading, sl_token } = useSelector(userSelector)
@@ -33,21 +35,20 @@ const Register = ({ className }: { className?: string }) => {
       <form onSubmit={onSubmit}>
         <h1>LOGIN</h1>
         <label htmlFor="name">Name</label>
-        <input type="text" placeholder="name" id="name" />
+        <Input type="text" placeholder="name" id="name" />
 
         <label htmlFor="email">Email</label>
-        <input type="email" placeholder="email" id="email" />
+        <Input type="email" placeholder="email" id="email" />
 
-        <button type="submit" disabled={isLoading}>
+        <Button type="submit" disabled={isLoading}>
           {isLoading ? 'Loading' : 'Go'}
-        </button>
+        </Button>
       </form>
     </aside>
   )
 }
 
 export default styled(Register)({
-  backgroundColor: grayishBlue,
   minHeight: '100vh',
   display: 'flex',
   flexDirection: 'column',
@@ -71,17 +72,17 @@ export default styled(Register)({
     backgroundColor: darkGrayishBlue,
 
     input: {
-      marginBottom: medium,
-      padding: small,
+      marginBottom: small,
+      padding: xsmall,
     },
 
     label: {
       fontSize: '16px',
-      marginBottom: extraSmall,
+      marginBottom: xxsmall,
     },
 
-    button: {
-      marginTop: medium,
+    [Button]: {
+      marginTop: small,
     },
   },
 })

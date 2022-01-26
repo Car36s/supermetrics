@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { postsSelector } from '../../store/posts/selectors'
 import { Post as PostType, SortOption } from '../../types/posts'
 import Post from './posts/Post'
@@ -7,14 +8,15 @@ import Post from './posts/Post'
 interface Props {
   selectedSender?: string
   sort: SortOption
+  className?: string
 }
 
 const sorter: Record<SortOption, number[]> = {
   asc: [1, -1],
-  desc: [-1, 1]
+  desc: [-1, 1],
 }
 
-const Posts = ({ selectedSender = '', sort }: Props) => {
+const PostsComponent = ({ selectedSender = '', sort, className }: Props) => {
   const { posts } = useSelector(postsSelector)
 
   // @todo - pagination
@@ -32,7 +34,7 @@ const Posts = ({ selectedSender = '', sort }: Props) => {
   if (!displayItems?.length) return null
 
   return (
-    <div>
+    <div className={className}>
       {displayItems.map((postData) => (
         <Post {...postData} key={postData.id} />
       ))}
@@ -40,4 +42,6 @@ const Posts = ({ selectedSender = '', sort }: Props) => {
   )
 }
 
-export default Posts
+export default styled(PostsComponent)({
+  gridArea: 'posts',
+})

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { postsSelector } from '../../store/posts/selectors'
 
 import Sender from './senders/Sender'
@@ -11,9 +12,10 @@ interface CountedSenders {
 
 interface Props {
   onSelectSender: (arg0: string) => void
+  className?: string
 }
 
-const Senders = ({ onSelectSender }: Props) => {
+const SendersComponent = ({ onSelectSender, className }: Props) => {
   const [senders, setSenders] = useState<
     {
       from_id: string
@@ -34,7 +36,7 @@ const Senders = ({ onSelectSender }: Props) => {
       .map(([from_id, { name, postsCount }]) => ({
         from_id,
         name,
-        postsCount
+        postsCount,
       }))
       // Currently all names with capital letters.
       .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -45,7 +47,7 @@ const Senders = ({ onSelectSender }: Props) => {
   if (!senders?.length) return null
 
   return (
-    <div>
+    <div className={className}>
       {senders.map(({ from_id, name, postsCount }) => (
         <Sender key={from_id} id={from_id} name={name} postsCount={postsCount} onSelectSender={onSelectSender} />
       ))}
@@ -53,4 +55,6 @@ const Senders = ({ onSelectSender }: Props) => {
   )
 }
 
-export default Senders
+export default styled(SendersComponent)({
+  gridArea: 'senders',
+})
