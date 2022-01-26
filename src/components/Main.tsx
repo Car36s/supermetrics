@@ -1,13 +1,16 @@
 import { useCallback, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { userSelector } from '../store/user/selectors'
 import { SortOption } from '../types/posts'
 
 import Controls from './main/Controls'
 import Posts from './main/Posts'
 import Senders from './main/Senders'
 
-const Main = (): JSX.Element => {
+const Main = (): JSX.Element | null => {
   const [selectedSender, setSelectedSender] = useState<string>()
   const [sort, setSort] = useState<SortOption>('desc')
+  const { sl_token } = useSelector(userSelector)
 
   const onSelectSender = useCallback(
     (from_id) =>
@@ -17,6 +20,8 @@ const Main = (): JSX.Element => {
       }),
     []
   )
+
+  if (!sl_token) return null
 
   return (
     <main>
