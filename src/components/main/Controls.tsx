@@ -1,8 +1,21 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
+import { medium, xlarge } from '../../lib/sizes'
 import { SortOption } from '../../types/posts'
 import Button from '../Button'
 import Input from '../Input'
+
+const RightContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'space-between',
+
+  '> div': {
+    display: 'flex',
+    [Button]: {
+      minWidth: xlarge,
+    },
+  },
+})
 
 interface Props {
   setSort: (arg0: SortOption) => void
@@ -16,13 +29,25 @@ const ControlsComponent = ({ setSort, className }: Props) => {
   return (
     <div className={className}>
       <Input placeholder="search" />
-      <Button onClick={setSortDesc}>Newer first</Button>
-      <Button onClick={setSortAsc}>Older first</Button>
-      <Input placeholder="search" />
+      <RightContainer>
+        <div>
+          <Button onClick={setSortDesc}>&#8593;</Button>
+          <Button onClick={setSortAsc}>&#8595;</Button>
+        </div>
+        <Input placeholder="search" />
+      </RightContainer>
     </div>
   )
 }
 
 export default styled(ControlsComponent)({
   gridArea: 'controls',
+  display: 'grid',
+  gridTemplateColumns: '1fr 5fr',
+  gridGap: medium,
+  gridAutoFlow: 'column',
+
+  [Input]: {
+    textAlign: 'center',
+  },
 })
