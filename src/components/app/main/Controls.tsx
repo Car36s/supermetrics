@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import { medium, xlarge } from '../../lib/sizes'
-import { SortOption } from '../../types/posts'
-import Button from '../Button'
-import Input from '../Input'
+import { medium, xlarge } from '../../../lib/sizes'
+import { SortOption } from '../../../types/posts'
+import Button from '../../Button'
+import Input from '../../Input'
 
 const RightContainer = styled.div({
   display: 'flex',

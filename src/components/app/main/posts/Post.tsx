@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { medium, xlarge, xsmall } from '../../../lib/sizes'
-import { Post as PostProp } from '../../../types/posts'
+import { medium, xlarge, xsmall } from '../../../../lib/sizes'
+import { Post as PostProp } from '../../../../types/posts'
 
 const DatePosted = styled.div({
   paddingLeft: medium,

@@ -1,15 +1,19 @@
 import { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { medium, xlarge } from '../lib/sizes'
-import { userSelector } from '../store/user/selectors'
-import { SortOption } from '../types/posts'
+import { medium, xlarge } from '../../lib/sizes'
+import { userSelector } from '../../store/user/selectors'
+import { SortOption } from '../../types/posts'
 
 import Controls from './main/Controls'
 import Posts from './main/Posts'
 import Senders from './main/Senders'
 
 const MainComponent = ({ className }: { className?: string }): JSX.Element | null => {
+  const params = useParams()
+  console.log(params)
+
   const [selectedSender, setSelectedSender] = useState<string>()
   const [sort, setSort] = useState<SortOption>('desc')
 
@@ -42,7 +46,7 @@ export default styled(MainComponent)({
   padding: medium,
   display: 'grid',
   gridGap: medium,
-  gridTemplateColumns: '1fr 5fr',
+  gridTemplateColumns: '2fr 9fr',
   gridTemplateRows: xlarge,
   gridTemplateAreas: `
   "controls controls"

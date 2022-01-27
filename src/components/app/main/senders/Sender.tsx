@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
 import styled from 'styled-components'
-import Button from '../../Button'
-import { small, xsmall } from '../../../lib/sizes'
-import { darkGrayishBlue, grayishBlue, lightGrayishBlue } from '../../../lib/colors'
+import Button from '../../../Button'
+import { small, xsmall } from '../../../../lib/sizes'
+import { darkGrayishBlue, grayishBlue, lightGrayishBlue } from '../../../../lib/colors'
 import { Link, useParams } from 'react-router-dom'
 
 const Count = styled.span({
