@@ -1,5 +1,5 @@
-import Main from './components/Main'
-import Register from './components/Register'
+import Main from './Main'
+import Register from './Register'
 
 const App = ({ className }: { className?: string }) => (
   <div className={className}>

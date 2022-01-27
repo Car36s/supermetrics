@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from 'react'
 import styled from 'styled-components'
-import { medium, small, xsmall } from '../lib/sizes'
+import { medium, xsmall } from '../lib/sizes'
 
 type Props = InputHTMLAttributes<HTMLInputElement>
 
