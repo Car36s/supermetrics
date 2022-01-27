@@ -11,12 +11,11 @@ interface CountedSenders {
 }
 
 interface Props {
-  onSelectSender: (arg0: string) => void
   className?: string
   sendersFilter: string
 }
 
-const SendersComponent = ({ onSelectSender, className, sendersFilter }: Props) => {
+const SendersComponent = ({ className, sendersFilter }: Props) => {
   const [senders, setSenders] = useState<
     {
       from_id: string
@@ -51,7 +50,7 @@ const SendersComponent = ({ onSelectSender, className, sendersFilter }: Props) =
   return (
     <div className={className}>
       {senders.map(({ from_id, name, postsCount }) => (
-        <Sender key={from_id} from_id={from_id} name={name} postsCount={postsCount} onSelectSender={onSelectSender} />
+        <Sender key={from_id} from_id={from_id} name={name} postsCount={postsCount} />
       ))}
     </div>
   )

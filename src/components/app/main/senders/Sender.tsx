@@ -1,4 +1,3 @@
-import { useCallback } from 'react'
 import styled from 'styled-components'
 import Button from '../../../Button'
 import { small, xsmall } from '../../../../lib/sizes'
@@ -18,18 +17,16 @@ interface Props {
   name: string
   from_id: string
   postsCount: number
-  onSelectSender: (arg0: string) => void
   className?: string
 }
 
-const SenderComponent = ({ name, from_id, postsCount, onSelectSender, className }: Props) => {
-  const onClick = useCallback(() => onSelectSender(from_id), [from_id, onSelectSender])
+const SenderComponent = ({ name, from_id, postsCount, className }: Props) => {
   const { filter } = useParams()
 
   const isActive = filter === from_id
   return (
     <Link to={`${isActive ? '/' : `/${from_id}`}`} className={className}>
-      <Button onClick={onClick} isActive={isActive}>
+      <Button isActive={isActive}>
         <span>{name}</span>
         <Count>{postsCount}</Count>
       </Button>
