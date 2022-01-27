@@ -1,29 +1,42 @@
 import {
+  InitializeUserDone,
+  InitializeUserDonePayload,
   RegisterUserFailed,
   RegisterUserFailedPayload,
   RegisterUserStarted,
   RegisterUserStartedPayload,
   RegisterUserSuccess,
-  RegisterUserSuccessPayload
+  RegisterUserSuccessPayload,
 } from '../../types/user'
 
 export enum userActionTypes {
   userRegisterStarted = 'userRegisterStarted',
   userRegisterFailed = 'userRegisterFailed',
-  userRegisterSuccess = 'userRegisterSuccess'
+  userRegisterSuccess = 'userRegisterSuccess',
+  userInitialize = 'userInitialize',
+  userInitializeDone = 'userInitializeDone',
 }
 
 export const registerStarted = (payload: RegisterUserStartedPayload): RegisterUserStarted => ({
   type: userActionTypes.userRegisterStarted,
-  payload
+  payload,
 })
 
 export const registerFailed = (payload: RegisterUserFailedPayload): RegisterUserFailed => ({
   type: userActionTypes.userRegisterFailed,
-  payload
+  payload,
 })
 
 export const registerSucess = (payload: RegisterUserSuccessPayload): RegisterUserSuccess => ({
   type: userActionTypes.userRegisterSuccess,
-  payload
+  payload,
+})
+
+export const initializeUser = () => ({
+  type: userActionTypes.userInitialize,
+})
+
+export const initializeUserDone = (payload: InitializeUserDonePayload): InitializeUserDone => ({
+  type: userActionTypes.userInitializeDone,
+  payload,
 })

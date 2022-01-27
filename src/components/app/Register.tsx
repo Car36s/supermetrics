@@ -1,10 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { darkGrayishBlue } from '../../lib/colors'
 import { xxsmall, small, xsmall } from '../../lib/sizes'
 
-import { registerStarted } from '../../store/user/actions'
+import { initializeUser, registerStarted } from '../../store/user/actions'
 import { userSelector } from '../../store/user/selectors'
 import Button from '../Button'
 import Input from '../Input'
@@ -12,6 +12,11 @@ import Input from '../Input'
 const Register = ({ className }: { className?: string }) => {
   const { isLoading, sl_token } = useSelector(userSelector)
   const dispatch = useDispatch()
+
+  // The dispatch function reference is stable, this hook runs only once
+  useEffect(() => {
+    dispatch(initializeUser())
+  }, [dispatch])
 
   const onSubmit = useCallback(
     (event) => {

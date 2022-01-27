@@ -7,7 +7,7 @@ const initialState: UserState = {
   name: '',
   client_id: '',
   sl_token: '',
-  error: ''
+  error: '',
 }
 
 const userReducers = (state = initialState, action: userActions) => {
@@ -17,6 +17,8 @@ const userReducers = (state = initialState, action: userActions) => {
     case userActionTypes.userRegisterFailed:
       return { ...state, isLoading: false, error: action.payload.error }
     case userActionTypes.userRegisterSuccess:
+      return { ...state, ...action.payload }
+    case userActionTypes.userInitializeDone:
       return { ...state, ...action.payload }
     default:
       return state

@@ -23,6 +23,11 @@ export interface RegisterUserSuccessPayload {
   email: string
   sl_token: string
 }
+export interface InitializeUserDonePayload {
+  name: string
+  email: string
+  sl_token: string
+}
 
 export interface RegisterUserStarted {
   type: typeof userActionTypes.userRegisterStarted
@@ -39,4 +44,18 @@ export type RegisterUserSuccess = {
   payload: RegisterUserSuccessPayload
 }
 
-export type userActions = RegisterUserStarted | RegisterUserFailed | RegisterUserSuccess
+export type InitializeUser = {
+  type: typeof userActionTypes.userInitialize
+}
+
+export type InitializeUserDone = {
+  type: typeof userActionTypes.userInitializeDone
+  payload: InitializeUserDonePayload
+}
+
+export type userActions =
+  | RegisterUserStarted
+  | RegisterUserFailed
+  | RegisterUserSuccess
+  | InitializeUser
+  | InitializeUserDone
