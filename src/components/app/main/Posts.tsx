@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { medium } from '../../../lib/sizes'
 import { postsSelector } from '../../../store/posts/selectors'
 import { Post as PostType, SortOption } from '../../../types/posts'
+import NoResults from './posts/NoResults'
 import Post from './posts/Post'
 
 interface Props {
@@ -20,21 +21,24 @@ const sorter: Record<SortOption, number[]> = {
 
 const PostsComponent = ({ sort, className, postsFilter }: Props) => {
   const { posts } = useSelector(postsSelector)
-  const { filter } = useParams()
+  const { senderFilter } = useParams()
 
   // @todo - pagination
   const [displayItems, setDisplayItems] = useState<PostType[]>()
 
   useEffect(() => {
-    const filteredItems = !filter ? posts[1] : posts[1]?.filter(({ from_id }) => from_id === filter)
+    const filteredItems = !senderFilter ? posts[1] : posts[1]?.filter(({ from_id }) => from_id === senderFilter)
     const sortedDisplayItems = filteredItems
       ?.sort((a, b) => (a.created_time > b.created_time ? sorter[sort][0] : sorter[sort][1]))
       .filter(({ message }) => message.toLowerCase().includes(postsFilter.toLowerCase()))
     // create copy of items since sort just mutates original and updates may not happen
     setDisplayItems(sortedDisplayItems?.slice(0))
-  }, [posts, filter, sort, postsFilter])
+  }, [posts, senderFilter, sort, postsFilter])
 
-  if (!displayItems?.length) return null
+  if (!displayItems?.length) {
+    if (senderFilter || postsFilter) return <NoResults />
+    return null
+  }
 
   return (
     <div className={className}>

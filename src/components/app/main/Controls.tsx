@@ -47,7 +47,7 @@ const ControlsComponent = ({ setSort, setSendersFilter, className, setPostsFilte
 export default styled(ControlsComponent)({
   gridArea: 'controls',
   display: 'grid',
-  gridTemplateColumns: '1fr 5fr',
+  gridTemplateColumns: '2fr 9fr',
   gridGap: medium,
   gridAutoFlow: 'column',
 

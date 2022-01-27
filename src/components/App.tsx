@@ -6,7 +6,7 @@ const App = ({ className }: { className?: string }) => (
   <div className={className}>
     <Register />
     <Routes>
-      <Route path="/:filter" element={<Main />} />
+      <Route path="/:senderFilter" element={<Main />} />
       <Route path="/" element={<Main />} />
     </Routes>
   </div>

@@ -21,9 +21,9 @@ interface Props {
 }
 
 const SenderComponent = ({ name, from_id, postsCount, className }: Props) => {
-  const { filter } = useParams()
+  const { senderFilter } = useParams()
 
-  const isActive = filter === from_id
+  const isActive = senderFilter === from_id
   return (
     <Link to={`${isActive ? '/' : `/${from_id}`}`} className={className}>
       <Button isActive={isActive}>
