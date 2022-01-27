@@ -51,7 +51,7 @@ const SendersComponent = ({ onSelectSender, className, sendersFilter }: Props) =
   return (
     <div className={className}>
       {senders.map(({ from_id, name, postsCount }) => (
-        <Sender key={from_id} id={from_id} name={name} postsCount={postsCount} onSelectSender={onSelectSender} />
+        <Sender key={from_id} from_id={from_id} name={name} postsCount={postsCount} onSelectSender={onSelectSender} />
       ))}
     </div>
   )

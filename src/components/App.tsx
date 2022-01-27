@@ -1,10 +1,14 @@
-import Main from './Main'
-import Register from './Register'
+import { Route, Routes } from 'react-router-dom'
+import Main from './app/Main'
+import Register from './app/Register'
 
 const App = ({ className }: { className?: string }) => (
   <div className={className}>
     <Register />
-    <Main />
+    <Routes>
+      <Route path="/:filter" element={<Main />} />
+      <Route path="/" element={<Main />} />
+    </Routes>
   </div>
 )
 

@@ -7,6 +7,7 @@ import store from './store'
 import { createGlobalStyle } from 'styled-components'
 import { grayishBlue } from './lib/colors'
 import { small } from './lib/sizes'
+import { BrowserRouter } from 'react-router-dom'
 
 const GlobalStyles = createGlobalStyle({
   html: {
@@ -27,7 +28,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStyles />
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
