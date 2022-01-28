@@ -1,20 +1,26 @@
 import { SagaIterator } from 'redux-saga'
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, select, takeEvery } from 'redux-saga/effects'
 import { getItem, removeItem, setItem } from '../../lib/localStorage'
 
 import { register } from '../../services/register'
 import { RegisterUserStarted } from '../../types/user'
 import { clearPosts, getPostsStarted } from '../posts/actions'
+import { postsSelector } from '../posts/selectors'
 import { initializeUserDone, registerFailed, registerSucess, userActionTypes } from './actions'
 
 const SECRET = 'secret'
+
+const ONE_HOUR = 60 * 60 * 1000 // in ms
+const FIVE_SECONDS = 5000 // in ms
 
 const registerSaga = function* (action: RegisterUserStarted): SagaIterator {
   try {
     const { data } = yield call(register, action.payload)
     if (data) {
       yield put(registerSucess(data))
-      yield put(getPostsStarted({}))
+      const { posts } = yield select(postsSelector)
+      // Get posts only if none currently loaded
+      if (Object.keys(posts).length === 0) yield put(getPostsStarted({}))
       yield call(setItem, SECRET, `${data.sl_token}//${Date.now()}//${data.email}//${action.payload.name}`)
     }
   } catch (err: unknown) {
@@ -28,7 +34,7 @@ const initializeUserSaga = function* (): SagaIterator {
 
     const [sl_token, timestamp, email, name] = (secret ?? '').split('//')
 
-    if (!timestamp || Date.now() > parseInt(timestamp, 10) + 1000 * 60 * 60) {
+    if (!timestamp || Date.now() > parseInt(timestamp, 10) - FIVE_SECONDS + ONE_HOUR) {
       yield call(removeItem, SECRET)
     } else {
       yield put(initializeUserDone({ sl_token, email, name }))
