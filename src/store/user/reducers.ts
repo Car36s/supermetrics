@@ -20,6 +20,8 @@ const userReducers = (state = initialState, action: userActions) => {
       return { ...state, ...action.payload }
     case userActionTypes.userInitializeDone:
       return { ...state, ...action.payload }
+    case userActionTypes.logOut:
+      return initialState
     default:
       return state
   }

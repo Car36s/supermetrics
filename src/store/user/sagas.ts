@@ -4,7 +4,7 @@ import { getItem, removeItem, setItem } from '../../lib/localStorage'
 
 import { register } from '../../services/register'
 import { RegisterUserStarted } from '../../types/user'
-import { getPostsStarted } from '../posts/actions'
+import { clearPosts, getPostsStarted } from '../posts/actions'
 import { initializeUserDone, registerFailed, registerSucess, userActionTypes } from './actions'
 
 const SECRET = 'secret'
@@ -39,9 +39,15 @@ const initializeUserSaga = function* (): SagaIterator {
   }
 }
 
+const logOutSaga = function* (): SagaIterator {
+  yield call(removeItem, SECRET)
+  yield put(clearPosts())
+}
+
 const userSagas = function* (): SagaIterator<void> {
   yield takeEvery(userActionTypes.userRegisterStarted, registerSaga)
   yield takeEvery(userActionTypes.userInitialize, initializeUserSaga)
+  yield takeEvery(userActionTypes.logOut, logOutSaga)
 }
 
 export default userSagas

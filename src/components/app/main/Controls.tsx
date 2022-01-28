@@ -4,6 +4,7 @@ import { medium, xlarge } from '../../../lib/sizes'
 import { SortOption } from '../../../types/posts'
 import Button from '../../Button'
 import Input from '../../Input'
+import LogOff from './controls/LogOff'
 
 const RightContainer = styled.div({
   display: 'flex',
@@ -38,7 +39,10 @@ const ControlsComponent = ({ setSort, setSendersFilter, className, setPostsFilte
           <Button onClick={setSortDesc}>&#8593;</Button>
           <Button onClick={setSortAsc}>&#8595;</Button>
         </div>
-        <Input placeholder="search" type="text" onChange={onFilterPosts} />
+        <div>
+          <Input placeholder="search" type="text" onChange={onFilterPosts} />
+          <LogOff />
+        </div>
       </RightContainer>
     </div>
   )

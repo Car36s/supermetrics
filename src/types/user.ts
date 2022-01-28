@@ -53,9 +53,14 @@ export type InitializeUserDone = {
   payload: InitializeUserDonePayload
 }
 
+export type LogOut = {
+  type: typeof userActionTypes.logOut
+}
+
 export type userActions =
   | RegisterUserStarted
   | RegisterUserFailed
   | RegisterUserSuccess
   | InitializeUser
   | InitializeUserDone
+  | LogOut

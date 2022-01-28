@@ -1,6 +1,7 @@
 import {
   InitializeUserDone,
   InitializeUserDonePayload,
+  LogOut,
   RegisterUserFailed,
   RegisterUserFailedPayload,
   RegisterUserStarted,
@@ -15,6 +16,7 @@ export enum userActionTypes {
   userRegisterSuccess = 'userRegisterSuccess',
   userInitialize = 'userInitialize',
   userInitializeDone = 'userInitializeDone',
+  logOut = 'logOut',
 }
 
 export const registerStarted = (payload: RegisterUserStartedPayload): RegisterUserStarted => ({
@@ -39,4 +41,8 @@ export const initializeUser = () => ({
 export const initializeUserDone = (payload: InitializeUserDonePayload): InitializeUserDone => ({
   type: userActionTypes.userInitializeDone,
   payload,
+})
+
+export const logOut = (): LogOut => ({
+  type: userActionTypes.logOut,
 })

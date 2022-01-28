@@ -38,4 +38,6 @@ export default styled(MainComponent)({
   "controls controls"
   "senders posts"
   "senders posts"`,
+  maxWidth: '1200px',
+  margin: '0 auto',
 })

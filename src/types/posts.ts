@@ -43,7 +43,11 @@ export type GetPostsSuccess = {
   payload: GetPostsSuccessPayload
 }
 
-export type postsActions = GetPostsStarted | GetPostsFailed | GetPostsSuccess
+export type ClearPosts = {
+  type: typeof postsActionTypes.clearPosts
+}
+
+export type postsActions = GetPostsStarted | GetPostsFailed | GetPostsSuccess | ClearPosts
 
 type asc = 'asc'
 type desc = 'desc'

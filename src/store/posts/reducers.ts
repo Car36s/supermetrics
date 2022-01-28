@@ -4,7 +4,7 @@ import { postsActionTypes } from './actions'
 const initialState: PostsState = {
   isLoading: false,
   posts: {},
-  error: ''
+  error: '',
 }
 
 const postsReducer = (state = initialState, action: postsActions) => {
@@ -15,6 +15,8 @@ const postsReducer = (state = initialState, action: postsActions) => {
       return { ...state, isLoading: false, error: action.payload.error }
     case postsActionTypes.getPostsSuccess:
       return { ...state, posts: { ...state.posts, [action.payload.page]: action.payload.posts } }
+    case postsActionTypes.clearPosts:
+      return initialState
     default:
       return state
   }
