@@ -1,12 +1,30 @@
-export const fetchJson = async (url: string, init = { method: 'GET' }) => {
+type FetchInit = RequestInit & {
+  json?: Record<string, unknown>
+}
+
+const headers = {
+  'Content-Type': 'application/json',
+}
+
+export const fetchJson = async (url: string, options: FetchInit = { method: 'GET' }) => {
   try {
-    const response = await fetch(url, init)
+    if (options.json) {
+      try {
+        const body = JSON.stringify(options.json)
+        options = { ...options, body }
+        delete options.json
+      } catch (err) {
+        // json stringify failed
+      }
+    }
+
+    const response = await fetch(url, { ...options, headers })
     if (!response?.ok) throw new Error('Not OK')
 
-    const data = response.json()
-    if (!data) throw new Error('No data')
+    const responseJson = response.json()
+    if (!responseJson) throw new Error('No data')
 
-    return data
+    return responseJson
   } catch (err) {
     // do something
   }
