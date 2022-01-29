@@ -8,6 +8,7 @@ import { initializeUser, registerStarted } from '../../store/user/actions'
 import { userSelector } from '../../store/user/selectors'
 import Button from '../Button'
 import Input from '../Input'
+import Spinner from '../Spinner'
 
 const Register = ({ className }: { className?: string }) => {
   const { isLoading, sl_token } = useSelector(userSelector)
@@ -38,16 +39,22 @@ const Register = ({ className }: { className?: string }) => {
   return (
     <aside className={className}>
       <form onSubmit={onSubmit}>
-        <h1>LOGIN</h1>
-        <label htmlFor="name">Name</label>
-        <Input type="text" placeholder="name" id="name" />
+        {isLoading ? (
+          <Spinner light />
+        ) : (
+          <>
+            <h1>LOGIN</h1>
+            <label htmlFor="name">Name</label>
+            <Input type="text" placeholder="name" id="name" />
 
-        <label htmlFor="email">Email</label>
-        <Input type="email" placeholder="email" id="email" />
+            <label htmlFor="email">Email</label>
+            <Input type="email" placeholder="email" id="email" />
 
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Loading' : 'Go'}
-        </Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? 'Loading' : 'Go'}
+            </Button>
+          </>
+        )}
       </form>
     </aside>
   )
@@ -60,10 +67,7 @@ export default styled(Register)({
   alignItems: 'center',
   justifyContent: 'center',
   color: 'white',
-
-  h1: {
-    textAlign: 'center',
-  },
+  textAlign: 'center',
 
   form: {
     display: 'flex',
@@ -83,6 +87,7 @@ export default styled(Register)({
 
     label: {
       fontSize: '16px',
+      textAlign: 'left',
       marginBottom: xxsmall,
     },
 

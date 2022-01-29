@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { postsSelector } from '../../../store/posts/selectors'
+import NoResults from './NoResults'
 
 import Sender from './senders/Sender'
 
@@ -23,11 +24,12 @@ const SendersComponent = ({ className, sendersFilter }: Props) => {
       postsCount: number
     }[]
   >()
-  const { posts } = useSelector(postsSelector)
+
+  const posts = useSelector(postsSelector)
 
   useEffect(() => {
     // @todo - pagination
-    const senders = posts[1]?.reduce<Record<string, CountedSenders>>((acc, { from_id, from_name }) => {
+    const senders = posts.posts[1]?.reduce<Record<string, CountedSenders>>((acc, { from_id, from_name }) => {
       acc[from_id] = { name: from_name, postsCount: (acc[from_id]?.postsCount ?? 0) + 1 }
       return acc
     }, {})
@@ -45,6 +47,7 @@ const SendersComponent = ({ className, sendersFilter }: Props) => {
     setSenders(sortedSenders)
   }, [posts, sendersFilter])
 
+  if (posts.isLoading) return <NoResults />
   if (!senders?.length) return null
 
   return (

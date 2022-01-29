@@ -14,7 +14,7 @@ const postsReducer = (state = initialState, action: postsActions) => {
     case postsActionTypes.getPostsFailed:
       return { ...state, isLoading: false, error: action.payload.error }
     case postsActionTypes.getPostsSuccess:
-      return { ...state, posts: { ...state.posts, [action.payload.page]: action.payload.posts } }
+      return { ...state, isLoading: false, posts: { ...state.posts, [action.payload.page]: action.payload.posts } }
     case postsActionTypes.clearPosts:
       return initialState
     default:

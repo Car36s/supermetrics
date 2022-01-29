@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { medium, xlarge } from '../../lib/sizes'
+import { medium } from '../../lib/sizes'
 import { userSelector } from '../../store/user/selectors'
 import { SortOption } from '../../types/posts'
 
@@ -33,7 +33,6 @@ export default styled(MainComponent)({
   display: 'grid',
   gridGap: medium,
   gridTemplateColumns: '2fr 9fr',
-  gridTemplateRows: xlarge,
   gridTemplateAreas: `
   "controls controls"
   "senders posts"

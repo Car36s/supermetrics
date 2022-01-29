@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { medium } from '../../../lib/sizes'
 import { postsSelector } from '../../../store/posts/selectors'
 import { Post as PostType, SortOption } from '../../../types/posts'
-import NoResults from './posts/NoResults'
+import NoResults from './NoResults'
 import Post from './posts/Post'
 
 interface Props {
