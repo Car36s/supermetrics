@@ -33,14 +33,14 @@ const ControlsComponent = ({ setSort, setSendersFilter, className, setPostsFilte
 
   return (
     <div className={className}>
-      <Input placeholder="search" type="text" onChange={onFilterSenders} />
+      <Input placeholder="filter users" type="text" onChange={onFilterSenders} />
       <RightContainer>
         <div>
           <Button onClick={setSortDesc}>&#8593;</Button>
           <Button onClick={setSortAsc}>&#8595;</Button>
         </div>
         <div>
-          <Input placeholder="search" type="text" onChange={onFilterPosts} />
+          <Input placeholder="filter posts" type="text" onChange={onFilterPosts} />
           <LogOff />
         </div>
       </RightContainer>
