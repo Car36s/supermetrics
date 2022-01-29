@@ -8,7 +8,7 @@ type CountedSenders = Record<
   }
 >
 
-export const getSendersWithPostCounts = (posts: Post[]): CountedSenders =>
+export const getSendersWithPostCounts = (posts?: Post[]): CountedSenders =>
   posts?.reduce<CountedSenders>((acc, { from_id, from_name }) => {
     acc[from_id] = { name: from_name, postsCount: (acc[from_id]?.postsCount ?? 0) + 1 }
     return acc

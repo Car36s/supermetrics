@@ -33,11 +33,11 @@ export const mockPosts: Post[] = [
 
 describe('lib/posts', () => {
   describe('getPostsFilteredBySenderId', () => {
+    it('should return all the posts if no senderFilter', () => {
+      expect(getPostsFilteredBySenderId(mockPosts, '').length).toBe(3)
+    })
     it('should filter posts by sender_id', () => {
       expect(getPostsFilteredBySenderId(mockPosts, 'user_2').length).toBe(1)
-    })
-    it('should return empty array if no sender_id in posts', () => {
-      expect(getPostsFilteredBySenderId(mockPosts, 'user_65').length).toBe(0)
     })
     it('should return empty array if no posts', () => {
       expect(getPostsFilteredBySenderId([], '').length).toBe(0)

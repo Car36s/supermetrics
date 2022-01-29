@@ -18,6 +18,9 @@ describe('lib/senders', () => {
     it('should parse senders from posts', () => {
       expect(getSendersWithPostCounts(mockPosts)).toStrictEqual(sendersWithPostCounts)
     })
+    it('should return empty object if no posts', () => {
+      expect(getSendersWithPostCounts()).toStrictEqual({})
+    })
   })
   describe('getSoretedSenders', () => {
     it('should sort senders aplhabetically', () => {
@@ -25,8 +28,14 @@ describe('lib/senders', () => {
     })
   })
   describe('getFilteredSenders', () => {
-    it('should filter ', () => {
-      expect(getFilteredSenders(sortedSenders, mockPosts[2].from_name)).toStrictEqual([sortedSenders[0]])
+    it('should filter by word', () => {
+      expect(getFilteredSenders(sortedSenders, 'Woodrow')).toStrictEqual([sortedSenders[1]])
+    })
+    it('should filter by partial word', () => {
+      expect(getFilteredSenders(sortedSenders, 'Wood')).toStrictEqual([sortedSenders[1]])
+    })
+    it('should filter by lowercase word', () => {
+      expect(getFilteredSenders(sortedSenders, 'Wood')).toStrictEqual([sortedSenders[1]])
     })
   })
 })
