@@ -53,4 +53,5 @@ export default styled(PostsComponent)({
   gridArea: 'posts',
   display: 'grid',
   gridGap: medium,
+  gridAutoRows: 'max-content',
 })
