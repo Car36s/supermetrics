@@ -1,7 +1,7 @@
 import { Post } from '../types/posts'
 import { getPostsFilteredBySenderId, getPostsFilteredByText, getSortedPosts } from './posts'
 
-const posts: Post[] = [
+export const mockPosts: Post[] = [
   {
     id: 'post61f4ac183a3ba_e60241f9',
     from_name: 'Woodrow Lindholm',
@@ -34,10 +34,10 @@ const posts: Post[] = [
 describe('lib/posts', () => {
   describe('getPostsFilteredBySenderId', () => {
     it('should filter posts by sender_id', () => {
-      expect(getPostsFilteredBySenderId(posts, 'user_2').length).toBe(1)
+      expect(getPostsFilteredBySenderId(mockPosts, 'user_2').length).toBe(1)
     })
     it('should return empty array if no sender_id in posts', () => {
-      expect(getPostsFilteredBySenderId(posts, 'user_65').length).toBe(0)
+      expect(getPostsFilteredBySenderId(mockPosts, 'user_65').length).toBe(0)
     })
     it('should return empty array if no posts', () => {
       expect(getPostsFilteredBySenderId([], '').length).toBe(0)
@@ -45,12 +45,12 @@ describe('lib/posts', () => {
   })
   describe('getPostsFilteredByText', () => {
     it('should filter posts by text', () => {
-      expect(getPostsFilteredByText(posts, 'money').length).toBe(2)
+      expect(getPostsFilteredByText(mockPosts, 'money').length).toBe(2)
     })
   })
   describe('getSortedPosts', () => {
     it('should sort older posts first', () => {
-      const sortedTimes = getSortedPosts(posts, 'asc').map(({ created_time }) => created_time)
+      const sortedTimes = getSortedPosts(mockPosts, 'asc').map(({ created_time }) => created_time)
       expect(sortedTimes).toStrictEqual([
         '2022-01-14T16:55:25+00:00',
         '2022-01-19T01:01:06+00:00',
@@ -58,7 +58,7 @@ describe('lib/posts', () => {
       ])
     })
     it('should sort newer posts first', () => {
-      const sortedTimes = getSortedPosts(posts, 'desc').map(({ created_time }) => created_time)
+      const sortedTimes = getSortedPosts(mockPosts, 'desc').map(({ created_time }) => created_time)
       expect(sortedTimes).toStrictEqual([
         '2022-01-28T23:38:43+00:00',
         '2022-01-19T01:01:06+00:00',
