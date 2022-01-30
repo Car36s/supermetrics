@@ -35,7 +35,7 @@ export const initializeUserSaga = function* (): SagaIterator {
     const secret = yield call(getItem, SECRET)
 
     const [sl_token, timestamp, email, name] = (secret ?? '').split('//')
-    console.log(Date.now(), timestamp)
+
     if (!timestamp || Date.now() > parseInt(timestamp, 10) - FIVE_SECONDS + ONE_HOUR) {
       yield call(removeItem, SECRET)
     } else {
