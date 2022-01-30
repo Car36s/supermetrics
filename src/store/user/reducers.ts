@@ -1,7 +1,7 @@
 import { userActions, UserState } from '../../types/user'
 import { userActionTypes } from './actions'
 
-const initialState: UserState = {
+export const initialState: UserState = {
   isLoading: false,
   email: '',
   name: '',
@@ -17,7 +17,7 @@ const userReducers = (state = initialState, action: userActions) => {
     case userActionTypes.userRegisterFailed:
       return { ...state, isLoading: false, error: action.payload.error }
     case userActionTypes.userRegisterSuccess:
-      return { ...state, ...action.payload }
+      return { ...state, isLoading: false, ...action.payload }
     case userActionTypes.userInitializeDone:
       return { ...state, ...action.payload }
     case userActionTypes.logOut:

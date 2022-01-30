@@ -1,5 +1,5 @@
+import { mockPosts } from '../tests/__mocks__/posts.mock'
 import { getSendersWithPostCounts, getSoretedSenders, getFilteredSenders } from './senders'
-import { mockPosts } from './posts.spec'
 
 const sendersWithPostCounts = {
   user_15: { name: 'Yolande Urrutia', postsCount: 1 },

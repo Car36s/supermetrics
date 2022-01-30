@@ -6,7 +6,7 @@ import { registerStarted } from '../user/actions'
 import { userSelector } from '../user/selectors'
 import { getPostsFailed, getPostsSucess, postsActionTypes } from './actions'
 
-const getPostsSaga = function* (action: GetPostsStarted): SagaIterator {
+export const getPostsSaga = function* (action: GetPostsStarted): SagaIterator {
   try {
     const { data, error } = yield call(getPosts, action.payload?.page ?? 0)
 

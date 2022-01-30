@@ -1,5 +1,25 @@
 import { postsActionTypes } from '../store/posts/actions'
 
+export interface PostsApiSuccessResponse {
+  meta: {
+    request_id: string
+  }
+  data: {
+    page: number
+    posts: Post[]
+  }
+}
+export interface PostsApiFailureResponse {
+  meta: {
+    request_id: string
+  }
+  error: {
+    message: string
+  }
+}
+
+export type PostsApiResponse = PostsApiSuccessResponse | PostsApiFailureResponse
+
 export interface Post {
   id: string
   from_name: string

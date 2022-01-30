@@ -1,7 +1,7 @@
 import { postsActions, PostsState } from '../../types/posts'
 import { postsActionTypes } from './actions'
 
-const initialState: PostsState = {
+export const initialState: PostsState = {
   isLoading: false,
   posts: {},
   error: '',

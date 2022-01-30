@@ -1,5 +1,16 @@
 import { userActionTypes } from '../store/user/actions'
 
+export interface RegisterApiSuccessResponse {
+  meta: {
+    request_id: string
+  }
+  data: {
+    client_id: string
+    email: string
+    sl_token: string
+  }
+}
+
 export interface UserState {
   isLoading: boolean
   email: string

@@ -11,27 +11,31 @@ import { initializeUserDone, registerFailed, registerSucess, userActionTypes } f
 const ONE_HOUR = 60 * 60 * 1000 // in ms
 const FIVE_SECONDS = 5000 // in ms
 
-const registerSaga = function* (action: RegisterUserStarted): SagaIterator {
+export const registerSaga = function* (action: RegisterUserStarted): SagaIterator {
   try {
-    const { data } = yield call(register, action.payload)
+    const { data, error } = yield call(register, action.payload)
     if (data) {
       yield call(setItem, SECRET, `${data.sl_token}//${Date.now()}//${data.email}//${action.payload.name}`)
       yield put(registerSucess(data))
+
       const { posts } = yield select(postsSelector)
       // Get posts only if none currently loaded
       if (Object.keys(posts).length === 0) yield put(getPostsStarted({}))
+    } else if (error) {
+      // @todo - error handling
+      registerFailed({ error: 'Borken' })
     }
   } catch (err: unknown) {
     registerFailed({ error: 'Borken' })
   }
 }
 
-const initializeUserSaga = function* (): SagaIterator {
+export const initializeUserSaga = function* (): SagaIterator {
   try {
     const secret = yield call(getItem, SECRET)
 
     const [sl_token, timestamp, email, name] = (secret ?? '').split('//')
-
+    console.log(Date.now(), timestamp)
     if (!timestamp || Date.now() > parseInt(timestamp, 10) - FIVE_SECONDS + ONE_HOUR) {
       yield call(removeItem, SECRET)
     } else {
