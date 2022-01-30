@@ -16,7 +16,7 @@ interface Props {
 }
 
 const PostsComponent = ({ sort, className, postsFilter }: Props) => {
-  const { posts } = useSelector(postsSelector)
+  const { posts, isLoading } = useSelector(postsSelector)
   const { senderFilter = '' } = useParams()
 
   /** @todo - pagination */
@@ -30,7 +30,7 @@ const PostsComponent = ({ sort, className, postsFilter }: Props) => {
   const displayItems = getSortedPosts(filteredByText, sort)
 
   if (!displayItems?.length) {
-    if (senderFilter || postsFilter) return <NoResults />
+    if (senderFilter || postsFilter || isLoading) return <NoResults />
     return null
   }
 

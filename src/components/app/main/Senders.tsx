@@ -13,17 +13,17 @@ interface Props {
 }
 
 const SendersComponent = ({ className, sendersFilter }: Props) => {
-  const posts = useSelector(postsSelector)
+  const { posts, isLoading } = useSelector(postsSelector)
 
   const senders = useMemo(() => {
     // @todo - pagination
-    const sendersWithPostCounts = getSendersWithPostCounts(posts.posts[1])
+    const sendersWithPostCounts = getSendersWithPostCounts(posts[1])
     return getSoretedSenders(sendersWithPostCounts)
   }, [posts])
 
   const displayItems = useMemo(() => getFilteredSenders(senders, sendersFilter), [senders, sendersFilter])
 
-  if (posts.isLoading) return <NoResults />
+  if (isLoading) return <NoResults />
   if (!displayItems?.length) return null
 
   return (

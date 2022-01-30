@@ -21,15 +21,13 @@ interface Props extends PostProp {
   className?: string
 }
 
-const PostComponent = ({ message, from_name, created_time, className }: Props) => {
-  return (
-    <div className={className}>
-      <DatePosted>{created_time}</DatePosted>
-      <Message>{message}</Message>
-      <Author>{from_name}</Author>
-    </div>
-  )
-}
+const PostComponent = ({ message, from_name, created_time, className }: Props) => (
+  <div className={className}>
+    <DatePosted>{created_time}</DatePosted>
+    <Message>{message}</Message>
+    <Author>{from_name}</Author>
+  </div>
+)
 
 export default styled(PostComponent)({
   display: 'grid',
